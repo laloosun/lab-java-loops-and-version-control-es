@@ -1,0 +1,73 @@
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the array for both tasks
+        int[] array = {10, 5, 8, 2, 15, 7};
+
+        // Task 1: Find the difference between the largest and smallest values
+        int difference = findDifference(array);
+        System.out.println("Task 1: The difference between the largest and smallest values is: " + difference);
+
+        // Task 2: Find the smallest and second smallest elements and print them
+        findTwoSmallest(array);
+    }
+
+    // Task 1: Find the difference between the largest and smallest values
+    public static int findDifference(int[] array) {
+        // Check if the array has at least 1 element
+        if (array.length < 1) {
+            throw new IllegalArgumentException("Array must have at least 1 element");
+        }
+
+        // Initialize min and max to the first element
+        int min = array[0];
+        int max = array[0];
+
+        // Iterate through the array to find the min and max
+        for (int i = 1; i < array.length; i++) {
+            // If the current element is smaller than the current min, update min
+            if (array[i] < min) {
+                min = array[i];
+            }
+            // If the current element is larger than the current max, update max
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        // Calculate and return the difference
+        return max - min;
+    }
+
+    // Task 2: Find the smallest and second smallest elements and print them
+    public static void findTwoSmallest(int[] array) {
+        // Check if the array has less than 2 elements
+        if (array.length < 2) {
+            System.out.println("Task 2: Array length is less than 2");
+            return;
+        }
+
+        // Initialize the smallest and secondSmallest variables to the maximum possible integer value
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+
+        // Iterate through the array
+        for (int num : array) {
+            // If the current number is smaller than the current smallest value
+            if (num < smallest) {
+                // Update the secondSmallest to the current smallest value
+                secondSmallest = smallest;
+                // Update the smallest to the current number
+                smallest = num;
+            }
+            // If the current number is not equal to the current smallest value and is smaller than the current secondSmallest value
+            else if (num < secondSmallest && num != smallest) {
+                // Update the secondSmallest to the current number
+                secondSmallest = num;
+            }
+        }
+
+        // Print the smallest and second smallest elements
+        System.out.println("Task 2: Smallest element: " + smallest);
+        System.out.println("Task 2: Second smallest element: " + secondSmallest);
+    }
+}
